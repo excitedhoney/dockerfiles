@@ -59,7 +59,6 @@ RUN set -ex \
     && pip install docker-py>=1.6.0 \
     && pip install apache-airflow[crypto,celery,postgres,hive,hdfs,jdbc]==$AIRFLOW_VERSION \
     && pip install python-openstackclient==3.11.0 \
-    && pip install httplib2 \
     && apt-get remove --purge -yqq $buildDeps \
     && apt-get clean \
     && rm -rf \
@@ -82,6 +81,9 @@ RUN chown -R airflow: ${AIRFLOW_HOME} \
     && chmod +x ${AIRFLOW_HOME}/entrypoint.sh
 
 EXPOSE 8080 5555 8793
+
+# installs addtional python libs
+pip install httplib2
 
 USER airflow
 WORKDIR ${AIRFLOW_HOME}
