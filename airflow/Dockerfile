@@ -59,6 +59,7 @@ RUN set -ex \
     && pip install docker-py>=1.6.0 \
     && pip install apache-airflow[crypto,celery,postgres,hive,hdfs,jdbc]==$AIRFLOW_VERSION \
     && pip install python-openstackclient==3.11.0 \
+    && pip install httplib2 \
     && apt-get remove --purge -yqq $buildDeps \
     && apt-get clean \
     && rm -rf \
